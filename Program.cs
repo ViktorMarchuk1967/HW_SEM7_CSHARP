@@ -64,7 +64,7 @@ Print2DArray(myArray);
 */
 
 //variant 1 - позиция элемента
-/* 
+
 int InputNum(string message)
 {
     Console.Write(message);
@@ -96,10 +96,10 @@ void Print2DArray(int[,] array)
 
 void FindElement(int[,] array, int position)
 {
+    int row = position / 10;
+    int col = position % 10;
     if (row < array.GetLength(0) && col < array.GetLength(1)) 
     {
-        int row = position / 10;
-        int col = position % 10;
         Console.Write($"Искомый элемент {array[row, col]}\t");
     }
     else Console.Write("Такого элемента нет");
@@ -116,7 +116,7 @@ int[,] myArray = Create2DArray(rows, columns);
 Fill2DArray(myArray, minValue, maxValue);
 Print2DArray(myArray);
 FindElement(myArray, elementArray);
-*/
+
 
 //variant 2 - порядковый номер
 /*
@@ -184,6 +184,7 @@ FindElement(myArray, elementArray);
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 */
 
+/*
 int InputNum(string message)
 {
     Console.Write(message);
@@ -233,4 +234,4 @@ int[,] myArray = Create2DArray(rows, columns);
 Fill2DArray(myArray, minValue, maxValue);
 Print2DArray(myArray);
 ArithmeticMean(myArray);
-
+*/
