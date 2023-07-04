@@ -63,7 +63,8 @@ Print2DArray(myArray);
 17 -> такого числа в массиве нет
 */
 
-//variant 1 
+//variant 1 - позиция элемента
+/* 
 int InputNum(string message)
 {
     Console.Write(message);
@@ -95,9 +96,12 @@ void Print2DArray(int[,] array)
 
 void FindElement(int[,] array, int position)
 {
-    int row = position / 10;
-    int col = position % 10;
-    if (row < array.GetLength(0) && col < array.GetLength(1)) Console.Write($"Искомый элемент {array[row, col]}\t");
+    if (row < array.GetLength(0) && col < array.GetLength(1)) 
+    {
+        int row = position / 10;
+        int col = position % 10;
+        Console.Write($"Искомый элемент {array[row, col]}\t");
+    }
     else Console.Write("Такого элемента нет");
 }
 
@@ -112,6 +116,62 @@ int[,] myArray = Create2DArray(rows, columns);
 Fill2DArray(myArray, minValue, maxValue);
 Print2DArray(myArray);
 FindElement(myArray, elementArray);
+*/
+
+//variant 2 - порядковый номер
+
+int InputNum(string message)
+{
+    Console.Write(message);
+    return int.Parse(Console.ReadLine()!);
+}
+
+int[,] Create2DArray(int rows, int cols)
+{
+    return new int[rows, cols];
+}
+
+void Fill2DArray(int[,] array, int min, int max)
+{
+    Random rnd = new Random();
+    for (int i = 0; i < array.GetLength(0); i++)
+        for (int j = 0; j < array.GetLength(1); j++)
+            array[i, j] = rnd.Next(min, max + 1);
+}
+
+void Print2DArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+            Console.Write($"{array[i, j]}\t");
+        Console.WriteLine();
+    }
+}
+
+void FindElement(int[,] array, int position)
+{
+    if (array.GetLength(0) * array.GetLength(1) > position)
+    {
+        int row = position / array.GetLength(1);
+        int col = position % array.GetLength(1);
+        Console.Write($"Искомый элемент {array[row, col]}\t");
+    }
+    else Console.Write("Такого элемента нет");
+}
+
+
+int rows = InputNum("Введите количество строк (до 9): ");
+int columns = InputNum("Введите количество столбцов (до 9): ");
+int minValue = InputNum("Введите минимальное значение диапазона: ");
+int maxValue = InputNum("Введите максимальное значение диапазона: ");
+int elementArray = InputNum("Введите позицию эленмента(двузначное число): ");
+
+int[,] myArray = Create2DArray(rows, columns);
+Fill2DArray(myArray, minValue, maxValue);
+Print2DArray(myArray);
+FindElement(myArray, elementArray);
+
 
 
 /*
