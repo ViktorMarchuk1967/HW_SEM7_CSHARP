@@ -151,10 +151,11 @@ void Print2DArray(int[,] array)
 
 void FindElement(int[,] array, int position)
 {
-    if (array.GetLength(0) * array.GetLength(1) > position)
+//    if (array.GetLength(0) * array.GetLength(1) > position)
+    if (array.Length > position)
     {
-        int row = position / array.GetLength(1);
-        int col = position % array.GetLength(1);
+        int row = (position - 1) / array.GetLength(1);
+        int col = (position - 1) % array.GetLength(1);
         Console.Write($"Искомый элемент {array[row, col]}\t");
     }
     else Console.Write("Такого элемента нет");
